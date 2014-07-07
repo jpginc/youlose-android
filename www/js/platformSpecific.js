@@ -1,4 +1,3 @@
-deviceSpecific(){
+otherAlert(){
     alert("android");
 }
-document.addEventListener('deviceready', deviceSpecific, false);
