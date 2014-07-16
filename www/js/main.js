@@ -1,3 +1,4 @@
+try {
 var controller = (function() {
     var errorReportingLevel = 2;
     var isInitialized = false;
@@ -122,6 +123,10 @@ var controller = (function() {
 
     return publicMethods;
 })();
+} catch (err) {
+    alert("script crash! " + err);
+
+}
 function User(controller) {
     var data;
     var northPole = [90,90];
