@@ -2,6 +2,7 @@ function LocalData() {
     var loadAtStartup = ["user"]; 
     var allEntries = loadAtStartup.concat([]);
     var savedData;
+    var myself = this;
 
     this.initialize = function() {
         savedData = {};
@@ -9,17 +10,18 @@ function LocalData() {
             try {
                 savedData[loadAtStartup[i]] =
                     JSON.parse(window.localStorage.getItem(loadAtStartup[i]).trim());
+                controller.log("loaded data" + savedData[loadAtStartup[i]], 1);
             } catch(err) {
                 controller.log("error parsing json! " + err, 8);
             }
         }
-        return this;
+        return myself;
     };
 
     this.get = function(key) {
         if(!savedData) {
-                this.initialize();
-            }
+            myself.initialize();
+        }
         controller.log("getting " +key, 1);
         controller.log("has " + savedData[key], 1);
         return savedData[key];
@@ -27,11 +29,11 @@ function LocalData() {
 
     this.save = function(key, value) {
         if(!savedData) {
-            this.initialize();
+            myself.initialize();
         }
         savedData[key] = value;
         window.localStorage.setItem(key, JSON.stringify(value));
-        return this;
+        return myself;
     };
 
     return this;

@@ -67,7 +67,7 @@ function historyTable(history) {
 }
 try {
 var controller = (function() {
-    var errorReportingLevel = 3;
+    var errorReportingLevel = 0;
     var isInitialized = false;
     var view;
     var localData;
@@ -589,7 +589,7 @@ function User(controller) {
         data.lastLoss = new Date().getTime();
         index = data.lossHistory.count++;
         data.lossHistory[index] = {time: data.lastLoss, location: latlng};
-        controller.save("user", myself.toString());
+        controller.save("user", data); 
         return this;
     };
 
