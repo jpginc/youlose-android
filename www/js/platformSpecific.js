@@ -15,6 +15,7 @@ function LocalData() {
                 controller.log("error parsing json! " + err, 8);
             }
         }
+        alert(JSON.strinfigy(savedData.user));
         return myself;
     };
 

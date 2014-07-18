@@ -543,20 +543,17 @@ function niceStringGetTime(string) {
     return now;
 }
 function User(controller) {
-    var data;
+    var data = newUser();
     var northPole = [90,90];
     var myself = this;
 
     this.loadData = function(toLoad) {
         try {
-            data = toLoad ? JSON.parse(toLoad.trim()) : newUser();
+            data = extendObj(data, toLoad);
         } catch(err) {
                 controller.log("error parsing user json!", 8);
                 data = newUser();
         }
-        if(data === "undefined") {
-            controller.log("data is the string undefined. might be an error saving data", 8);
-        } 
         return this;
     };
 
